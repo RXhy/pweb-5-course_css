@@ -1,79 +1,212 @@
-    * {
+/* =========================================
+   RESET & FONT DASAR
+   ========================================= */
+* {
     box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-/* padding for whole body */
+
 body {
-    padding: 15px;
+    background-color: #f4f7f6; /* Warna abu-abu sangat terang agar elegan */
+    color: #333;
+    line-height: 1.6;
 }
-/* styling body */
-.container {
-    max-width: 1200px;
-    margin: auto;
+
+/* =========================================
+   NAVBAR (MENGGUNAKAN FLEXBOX)
+   ========================================= */
+#nav-bar {
+    background-color: #2c3e50; /* Warna biru dongker */
+    padding: 15px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
-h1 {
+
+#nav-bar ul {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    gap: 40px; /* Jarak antar menu */
+}
+
+.nav-link {
     color: white;
-}
-/* anchor tag decoration */
-a {
     text-decoration: none;
-    color: #5673C8;
+    font-weight: bold;
+    font-size: 1.1em;
+    transition: color 0.3s ease;
 }
-a:hover {
-    color: lightblue;
+
+.nav-link:hover {
+    color: #f39c12; /* Warna kuning/oranye saat disorot */
 }
-/* paragraph tag decoration */
-p {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 4;
-    overflow: hidden;
+
+/* =========================================
+   HEADER / HOME SECTION
+   ========================================= */
+.home {
+    text-align: center;
+    padding: 80px 20px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #ddd;
 }
-/* row and column decoration */
+
+.home h1 {
+    font-size: 2.8em;
+    color: #2c3e50;
+    margin-bottom: 10px;
+}
+
+.home p {
+    font-size: 1.2em;
+    color: #7f8c8d;
+}
+
+/* =========================================
+   PILIHAN KELAS (MENGGUNAKAN CSS GRID)
+   ========================================= */
+.pilihankelas {
+    padding: 60px 5%;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+/* Grid Ajaib: Otomatis bikin 4 kolom di laptop, dan jadi 1 kolom di HP */
 .row {
-    margin: 0px -18px;
-    padding: 8px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
 }
-.row>.column {
-    padding: 6px;
-}
-.column {
-    float: left;
-    width: 20%;
-    position: relative; /* Add position relative */
-    transition: all 0.3s ease; /* Smooth transition */
-}
-.column:hover {
-    width: 25%;
-    top: -20px; /* Move up on hover */
-    box-shadow: 0 14px 8px rgba(0, 128, 0, 0.5); /* Add box shadow on hover */
-}
-.row:after {
-    content: "";
-    display: table;
-    clear: both;
-}
-/* content decoration */
+
+/* =========================================
+   KARTU KELAS (CARD STYLING)
+   ========================================= */
 .content {
     background-color: white;
-    padding: 10px;
-    border: 1px solid gray;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08); /* Efek bayangan lembut */
+    padding: 25px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
 }
-/* window size 850 width set */
-@media screen and (max-width: 850px) {
-    .column {
-        width: 50%;
-        @media screen and (max-width: 400px) {
-    }
+
+/* Efek kartu terangkat saat di-hover */
+.content:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 25px rgba(0,0,0,0.15);
 }
-/* window size 400 width set */
-    .column {
-        width: 100%;
-    }
-}
-.title {
-    text-align: center;
-    position: relative;
+
+.content img {
     width: 100%;
-    height: 15%;
-    background-color: green;
+    height: 160px;
+    object-fit: cover; /* Biar gambar gak gepeng */
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.content h3 {
+    color: #e74c3c; /* Warna merah agar mencolok */
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.content h3 a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.content p {
+    font-size: 0.95em;
+    color: #555;
+    margin-bottom: 20px;
+    flex-grow: 1; /* Mendorong list harga ke bagian paling bawah kartu */
+}
+
+/* =========================================
+   LIST DETAIL & HARGA DI DALAM KARTU
+   ========================================= */
+.content ul {
+    list-style-type: none;
+    border-top: 1px dashed #ccc;
+    padding-top: 15px;
+}
+
+.content ul li {
+    font-size: 0.9em;
+    margin-bottom: 10px;
+    padding-left: 25px;
+    position: relative;
+}
+
+/* Menambahkan icon centang custom sebelum teks */
+.content ul li::before {
+    content: "✔";
+    color: #27ae60; /* Warna hijau */
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+/* Khusus menyorot baris harga */
+.content ul li strong {
+    color: #2c3e50;
+    font-size: 1.1em;
+}
+
+.about {
+    text-align: center;
+    padding: 60px 20px;
+    background-color: #ecf0f1; /* Warna latar sedikit berbeda dari home untuk pemisah */
+    color: #2c3e50;
+}
+
+.about h3 {
+    font-size: 2em;
+    margin-bottom: 15px;
+}
+
+.about p {
+    font-size: 1.1em;
+    max-width: 800px; /* Membatasi lebar teks agar nyaman dibaca */
+    margin: 0 auto 30px auto; /* Menengahkan teks */
+    color: #555;
+}
+
+.keunggulan {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap; /* Otomatis turun ke bawah jika layar sempit */
+}
+
+.keunggulan span {
+    background-color: #e74c3c;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 25px; /* Membuat bentuk kapsul */
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.section-title {
+    text-align: center;
+    margin: 40px 0 30px 0;
+}
+
+.section-title h2 {
+    font-size: 2.2em;
+    color: #2c3e50;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.section-title p {
+    font-size: 1.1em;
+    color: #7f8c8d;
 }
